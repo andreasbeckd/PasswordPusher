@@ -1,0 +1,26 @@
+# Local development overrides — automatically merged by `docker compose up`.
+# Branding placeholders: replace branding/logo-*.svg with your own logo files
+# and adjust the PWP__BRAND__* values below.
+services:
+  pwpush:
+    ports:
+      - "5100:5100"
+    volumes:
+      - ./branding:/opt/PasswordPusher/public/branding:ro
+    environment:
+      # Local HTTP access (no TLS locally)
+      PWP__HOST_DOMAIN: "localhost:5100"
+      PWP__HOST_PROTOCOL: "http"
+
+      # --- Branding ---
+      PWP__BRAND__TITLE: "MyPush"
+      PWP__BRAND__TAGLINE: "Share secrets safely"
+      PWP__BRAND__SHOW_FOOTER_MENU: "true"
+      PWP__BRAND__LIGHT_LOGO: "/branding/logo-light.svg"
+      PWP__BRAND__DARK_LOGO: "/branding/logo-dark.svg"
+
+      # --- Logins (already default-on; explicit here for clarity) ---
+      PWP__DISABLE_LOGINS: "false"
+      PWP__DISABLE_SIGNUPS: "false"
+      # Account confirmation emails need SMTP; keep off until SMTP configured.
+      PWP__ENABLE_USER_ACCOUNT_EMAILS: "false"
