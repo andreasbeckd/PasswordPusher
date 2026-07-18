@@ -6,7 +6,7 @@ services:
     ports:
       - "5100:5100"
     volumes:
-      - ./branding:/opt/PasswordPusher/public/branding:ro
+      - ./public/branding:/opt/PasswordPusher/public/branding:ro
     environment:
       # Local HTTP access (no TLS locally)
       PWP__HOST_DOMAIN: "localhost:5100"
